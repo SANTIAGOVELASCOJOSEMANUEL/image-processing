@@ -188,11 +188,6 @@ function reescala(evt:any):void{
   }
 }
 
-function giro (evt: any): void{
-  var imagenSal:ImageType = new ImageType(pantalla1, imgLocal.getImage());
-  imagenSal.imageArray2DtoData(pantalla2, MathImg.togiro(imagenSal));
-}
-
 function marcaAguaCentro(evt: any): void{
   var imagenSal: ImageType = new ImageType(pantalla1, imgLocal.getImage());
   var imagen2:ImageType = new ImageType(pantalla4, imgLocal4.getImage());
@@ -415,8 +410,7 @@ document.getElementById("op-div").addEventListener('click', div, false);
 
 //op con imagenes compuestas
 document.getElementById("op-addimg").addEventListener('click', sumaImg, false);
-document.getElementById("op-reescaimg").addEventListener('click', sumaImg, false);
-document.getElementById("giro").addEventListener('click',giro, false);
+document.getElementById("op-reesimg").addEventListener('click', sumaImg, false);
 document.getElementById("op-marca-agua-centro").addEventListener('click', marcaAguaCentro, false);
 document.getElementById("op-marca-agua-array").addEventListener('click', marcaAguaArray, false);
 

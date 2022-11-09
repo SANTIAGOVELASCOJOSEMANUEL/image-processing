@@ -5,6 +5,7 @@ import { MathImg } from "./MathImg.js";
 import { Particle } from "./particle.js";
 import { ParticleText } from "./particle.js";
 import { CanvasLocal } from './canvasLocal.js';
+gfgfgfgfg
 let lienzo1: HTMLCanvasElement;
 let lienzo2: HTMLCanvasElement;
 let lienzo4: HTMLCanvasElement;
@@ -174,24 +175,6 @@ function sumaImg(evt: any): void{
   var imagen2:ImageType = new ImageType(pantalla4, imgLocal4.getImage());
   imagenSal.imageArray2DtoData(pantalla2, MathImg.addImg(imagenSal, imagen2));
 } 
-
-function reescala(evt:any):void{
-  var imagenSal: ImageType = new ImageType(pantalla1, imgLocal.getImage());
-  var imagen2: ImageType = new ImageType(pantalla4, imgLocal4.getImage());  
-  var d1=imagenSal._height+imagenSal._width
-  var d2=imagen2._height+imagen2._width
-  if(d1>=d2){
-    imagenSal.imageArray2DtoData(pantalla2, MathImg.reescalaImg(imagenSal, imagen2));    
-  }
-  else if(d1<d2){
-    imagen2.imageArray2DtoData(pantalla2,MathImg.reescalaImg(imagen2,imagenSal))
-  }
-}
-
-function giro (evt: any): void{
-  var imagenSal:ImageType = new ImageType(pantalla1, imgLocal.getImage());
-  imagenSal.imageArray2DtoData(pantalla2, MathImg.togiro(imagenSal));
-}
 
 function marcaAguaCentro(evt: any): void{
   var imagenSal: ImageType = new ImageType(pantalla1, imgLocal.getImage());
@@ -415,8 +398,6 @@ document.getElementById("op-div").addEventListener('click', div, false);
 
 //op con imagenes compuestas
 document.getElementById("op-addimg").addEventListener('click', sumaImg, false);
-document.getElementById("op-reescaimg").addEventListener('click', sumaImg, false);
-document.getElementById("giro").addEventListener('click',giro, false);
 document.getElementById("op-marca-agua-centro").addEventListener('click', marcaAguaCentro, false);
 document.getElementById("op-marca-agua-array").addEventListener('click', marcaAguaArray, false);
 

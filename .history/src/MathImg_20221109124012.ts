@@ -589,7 +589,7 @@ public static togiro(img: ImageType): number[][][]  {
   } 
   return sal;
 } 
-
+}
 
 
 

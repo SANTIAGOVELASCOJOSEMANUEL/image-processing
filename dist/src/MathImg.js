@@ -504,6 +504,58 @@ var MathImg = /** @class */ (function () {
         }
         return sal;
     };
+    //re-escalamiento de imagenes chico ajusta al mas grande
+    MathImg.reescalaImg = function (img, img2) {
+        /* Imagen mas chica y original del escalamiento */
+        var arrImage2 = img2.getArrayImg();
+        var ori_height = img2.getHeight();
+        var ori_width = img2.getWidth();
+        //Imagen grande
+        var arrImage = img.getArrayImg();
+        var dst_height = img.getHeight();
+        var dst_width = img.getWidth();
+        /* La relacion de imagenes */
+        var ratio_height = ori_height / dst_height;
+        var ratio_width = ori_width / dst_width;
+        /* salida */
+        var sal = this.initArray(img.getWidth(), img.getHeight());
+        var tem = this.initArray(img.getWidth(), img.getHeight());
+        /* Proceso de reescalado */
+        for (var i = 0; i < img.getHeight(); i++) {
+            for (var j = 0; j < img.getWidth(); j++) {
+                var x_ori = Math.floor(j * ratio_width);
+                var y_ori = Math.floor(i * ratio_height);
+                var u = x_ori - Math.floor(x_ori);
+                var v = y_ori - Math.floor(y_ori);
+                tem[0][i][j] = arrImage2[0][Math.floor(y_ori)][Math.floor(x_ori)] * (1 - u) * (1 - v) + arrImage2[0][Math.floor(y_ori)][Math.ceil(x_ori)] * (1 - u) * v + arrImage2[0][Math.ceil(y_ori)][Math.floor(x_ori)] * u * (1 - v) + arrImage2[0][Math.ceil(y_ori)][Math.ceil(x_ori)] * u * v;
+                tem[1][i][j] = arrImage2[1][Math.floor(y_ori)][Math.floor(x_ori)] * (1 - u) * (1 - v) + arrImage2[1][Math.floor(y_ori)][Math.ceil(x_ori)] * (1 - u) * v + arrImage2[1][Math.ceil(y_ori)][Math.floor(x_ori)] * u * (1 - v) + arrImage2[1][Math.ceil(y_ori)][Math.ceil(x_ori)] * u * v;
+                tem[2][i][j] = arrImage2[2][Math.floor(y_ori)][Math.floor(x_ori)] * (1 - u) * (1 - v) + arrImage2[2][Math.floor(y_ori)][Math.ceil(x_ori)] * (1 - u) * v + arrImage2[2][Math.ceil(y_ori)][Math.floor(x_ori)] * u * (1 - v) + arrImage2[2][Math.ceil(y_ori)][Math.ceil(x_ori)] * u * v;
+            }
+        }
+        for (var i = 0; i < img.getHeight(); i++) {
+            for (var j = 0; j < img.getWidth(); j++) {
+                sal[0][i][j] = tem[0][i][j] + arrImage[0][i][j];
+                sal[1][i][j] = tem[1][i][j] + arrImage[1][i][j];
+                sal[2][i][j] = tem[2][i][j] + arrImage[2][i][j];
+            }
+        }
+        console.log(tem);
+        return sal;
+    };
+    MathImg.togiro = function (img) {
+        //variable que guarda el arreglo 3d de la imagen de color
+        var arrImage = img.getArrayImg();
+        //variable donde guardamos la salida
+        var sal = this.initArray(img.getWidth(), img.getHeight());
+        for (var i = 0; i < img.getHeight(); i++) {
+            for (var j = 0; j < img.getWidth(); j++) {
+                sal[0][img.getHeight() - 1 - i][img.getWidth() - 1 - j] = arrImage[0][i][j];
+                sal[1][img.getHeight() - 1 - i][img.getWidth() - 1 - j] = arrImage[1][i][j];
+                sal[2][img.getHeight() - 1 - i][img.getWidth() - 1 - j] = arrImage[2][i][j];
+            } //
+        }
+        return sal;
+    };
     MathImg.marcaAguaCentro = function (img, img2, porc) {
         //variable que guarda el arreglo 3d de la imagen de color
         var arrImage;

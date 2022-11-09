@@ -168,6 +168,22 @@ function sumaImg(evt) {
     var imagen2 = new ImageType(pantalla4, imgLocal4.getImage());
     imagenSal.imageArray2DtoData(pantalla2, MathImg.addImg(imagenSal, imagen2));
 }
+function reescala(evt) {
+    var imagenSal = new ImageType(pantalla1, imgLocal.getImage());
+    var imagen2 = new ImageType(pantalla4, imgLocal4.getImage());
+    var d1 = imagenSal._height + imagenSal._width;
+    var d2 = imagen2._height + imagen2._width;
+    if (d1 >= d2) {
+        imagenSal.imageArray2DtoData(pantalla2, MathImg.reescalaImg(imagenSal, imagen2));
+    }
+    else if (d1 < d2) {
+        imagen2.imageArray2DtoData(pantalla2, MathImg.reescalaImg(imagen2, imagenSal));
+    }
+}
+function giro(evt) {
+    var imagenSal = new ImageType(pantalla1, imgLocal.getImage());
+    imagenSal.imageArray2DtoData(pantalla2, MathImg.togiro(imagenSal));
+}
 function marcaAguaCentro(evt) {
     var imagenSal = new ImageType(pantalla1, imgLocal.getImage());
     var imagen2 = new ImageType(pantalla4, imgLocal4.getImage());
@@ -361,6 +377,8 @@ document.getElementById("op-multiplicacion").addEventListener('click', multiplic
 document.getElementById("op-div").addEventListener('click', div, false);
 //op con imagenes compuestas
 document.getElementById("op-addimg").addEventListener('click', sumaImg, false);
+document.getElementById("op-reescaimg").addEventListener('click', sumaImg, false);
+document.getElementById("giro").addEventListener('click', giro, false);
 document.getElementById("op-marca-agua-centro").addEventListener('click', marcaAguaCentro, false);
 document.getElementById("op-marca-agua-array").addEventListener('click', marcaAguaArray, false);
 //op con efectos
